@@ -1,22 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import LogBookAPI from '../../Api/LogBookAPI'
+import LogBookAPI from "../../Api/LogBookAPI";
+
+const LogBookLink = ({ logBookId, title }) => (
+  <li key={logBookId}>
+    <Link to={`/logbook/${logBookId}`}>
+      {logBookId}: {title}
+    </Link>
+  </li>
+);
 
 function FullLogBook() {
   return (
     <div>
-      <ul>
-        {
-          LogBookAPI.all().map(log => (
-            <li key={log.logBookId}>
-              <Link to={`/logbook/${log.logBookId}`}>{log.logBookId}: {log.title}</Link>
-            </li>
-          ))
-        }
-      </ul>
+      <ul>{LogBookAPI.all().map((log) => LogBookLink(log))}</ul>
     </div>
-  )
+  );
 }
 
-export default FullLogBook
+export default FullLogBook;

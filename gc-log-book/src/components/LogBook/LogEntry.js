@@ -1,20 +1,28 @@
-import React from 'react'
+import React from "react";
 
-import LogBookAPI from '../../Api/LogBookAPI'
+import LogBookAPI from "../../Api/LogBookAPI";
 
-function LogEntry(props) {
-  const logEntry = LogBookAPI.get(
-    parseInt(props.match.params.logBookId, 10)
-  )
+const LogEntryFromRouter = ({
+  match: {
+    params: { logBookId },
+  },
+}) => LogEntry(parseInt(logBookId, 10));
+
+function LogEntry(logBookId) {
+  const logEntry = LogBookAPI.get(logBookId);
+
   if (!logEntry) {
-    return <div>Sorry, but that log was not found</div>
+    return <div>Sorry, but that log was not found</div>;
   }
+
   return (
     <div>
-      <h1>#{logEntry.logBookId}: {logEntry.title}</h1>
+      <h1>
+        #{logEntry.logBookId}: {logEntry.title}
+      </h1>
       <p>{logEntry.description}</p>
     </div>
-  )
+  );
 }
 
-export default LogEntry
+export default LogEntryFromRouter;
