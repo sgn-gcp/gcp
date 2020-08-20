@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-gclogbook-dev-143649-authRole",
+            "UnauthRoleArn": "arn:aws:iam::471326005670:role/amplify-gclogbook-dev-143649-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::471326005670:role/amplify-gclogbook-dev-143649-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-gclogbook-dev-143649-deployment",
+            "UnauthRoleName": "amplify-gclogbook-dev-143649-unauthRole",
+            "StackName": "amplify-gclogbook-dev-143649",
+            "StackId": "arn:aws:cloudformation:eu-west-1:471326005670:stack/amplify-gclogbook-dev-143649/32201750-e2ea-11ea-b1bc-062b1cfafef6",
+            "AmplifyAppId": "d6gezm7tn0znp"
+        },
+        "categories": {
+            "auth": {
+                "gclogbookc1049ae1": {}
+            }
+        }
+    }
+}

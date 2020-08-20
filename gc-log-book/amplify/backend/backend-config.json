@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"gclogbookc1049ae1": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
