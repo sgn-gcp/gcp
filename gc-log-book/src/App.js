@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import { AmplifySignOut, withAuthenticator  } from '@aws-amplify/ui-react'
 
 import Header from './Components/Header'
 import Main from './Components/Main'

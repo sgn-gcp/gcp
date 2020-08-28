@@ -1,0 +1,14 @@
+type PhoneBookEntry @model {
+  id: ID!
+  firstName: String!
+  surname: String!
+  ldz: String
+  homeNumber: String
+  officeNumber: String
+  mobile: String
+  page: String
+  fax: String
+  notes: String
+  address: String
+  description: String
+}
