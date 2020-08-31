@@ -1,15 +1,17 @@
 import React from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
-import { Redirect } from 'react-router-dom';
 import * as mutations from '../../graphql/mutations';
 import {
   Button,
   Form,
   Input,
   Label,
+  Radio,
+  Select,
   TextArea,
 } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
 
 const PhoneEntryFromRouter = ({
   match: {
@@ -22,7 +24,6 @@ class PhoneEntry extends React.Component {
   constructor(props) {
     super(props);
 
-    this.fetchData = this.fetchData.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
@@ -39,49 +40,19 @@ class PhoneEntry extends React.Component {
       description: '',
       createdAt: '',
       updatedAt: '',
-      phoneBookId: this.props.phoneBookId,
+      phoneBookId: '',
+      redirectPage: false
     };
-  }
-  
-  fetchData = async () => {
-    console.log("render")
-    try {
-      const response = await API.graphql(
-        graphqlOperation(queries.getPhoneBookEntry, { id: this.state.phoneBookId })
-      );
-      let item = response.data.getPhoneBookEntry
-      this.setState({
-        firstName: item.firstName,
-        surname: item.surname,
-        address: item.address,
-        ldz: item.ldz,
-        officeNumber: item.officeNumber,
-        mobile: item.mobile,
-        page: item.page,
-        fax: item.fax,
-        notes: item.notes,
-        description: item.description,
-        createdAt: item.createdAt,
-        updatedAt: item.updatedAt
-      });
-    } catch (err) {
-      console.log(
-        'Unfortuantely there was an error in getting the data: ' +
-          JSON.stringify(err)
-      );
-      console.log(err);
-    }
   }
 
   handleChange = (e, { name, value }) => {
-       this.setState({ [name]: value})
+    this.setState({ [name]: value})
   }
 
   handleSumbit = () => {
     console.log("submit");
     const data = {
       input: {
-        id: this.state.phoneBookId,
         firstName: this.state.firstName,
         surname: this.state.surname,
         ldz: this.state.ldz,
@@ -95,10 +66,14 @@ class PhoneEntry extends React.Component {
         description: this.state.description,
       }
     }
-    API.graphql(graphqlOperation(mutations.updatePhoneBookEntry, data))
+    API.graphql(graphqlOperation(mutations.createPhoneBookEntry, data))
     .then((response) => {
       console.log(response)
-      this.fetchData()
+      this.setState({
+        phoneBookId: response.data.createPhoneBookEntry.id,
+        redirectPage: true
+      })
+      // history.push(`/phonebook/${response.data.createPhoneBookEntry.id}`)
     })
     .catch((err) => {
       console.log("There was an error setting the data: " + err)
@@ -107,13 +82,16 @@ class PhoneEntry extends React.Component {
   }
 
   componentDidMount = () => {
-    this.fetchData()
+    // this.fetchData()
   }
 
   render () {
     // if (!this.state.item) {
     //   return <div>Sorry, but that log was not found</div>;
     // }
+    if (this.state.redirectPage === true) {
+      return <Redirect to={`/phonebook/${this.state.phoneBookId}`}/>
+    }
 
     return (
       <div>

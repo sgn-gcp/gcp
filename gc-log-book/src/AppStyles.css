@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900|Roboto:300,400,500,700');
+
+html {
+  background: url('./resources/images/SGN-hero-engineers-delivering-heat-and-comfort.png')
+    0 0 no-repeat;
+  background-size: cover;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+  min-height: 100%;
+  align-items: stretch;
+  flex-flow: column;
+  background: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start; /* align items in Main Axis */
+  align-items: stretch; /* align items in Cross Axis */
+  align-content: stretch; /* Extra space in Cross Axis */
+  height: 100%;
+  min-height: 100%;
+}
+
+/* .wrapper > * {
+  flex: 1 100%;
+} */
+
+.wrapper > div,
+.mainWrapper > div {
+  padding: 1em;
+}
+
+.mainWrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.mainWrapper > div {
+  flex: 1;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align items in Main Axis */
+  align-items: center; /* align items in Cross Axis */
+  align-content: stretch; /* Extra space in Cross Axis */
+  width: 50%;
+  margin: 0 auto;
+}
+
+h2.createLink {
+  margin-bottom: 2em;
+}
+
+h2.createLink > a {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  padding: 1em;
+  color: #fafcfc;
+}
+h2.createLink a:hover {
+  text-decoration: underline;
+  text-decoration-color: #ea5b0c;
+}
+
+.mainWrapper > div > form {
+  width: 100%;
+  padding: 1em;
+  background: rgba(255, 255, 255, 0.87516);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.mainWrapper > div > div {
+  padding: 1em;
+  background: rgba(255, 255, 255, 0.87516);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.mainWrapper > div > h1 {
+  margin: 0 0 1em;
+  font-size: 2.5rem;
+  margin-top: 0;
+  line-height: 55px;
+  line-height: 4.6875rem;
+  color: #fafcfc;
+  border-bottom: 4px solid;
+  border-bottom-color: #ea5b0c;
+  margin: 1em;
+}
+
+/* .hero-block h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+} */
+
+header {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  width: 100%;
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center; /* align items in Main Axis */
+  align-items: stretch; /* align items in Cross Axis */
+  align-content: stretch; /* Extra space in Cross Axis */
+  height: 100%;
+  text-transform: uppercase;
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+nav > ul > li {
+  margin: 0 1em;
+  list-style-type: none;
+  /* border: 1px solid rgb(77, 61, 61); */
+  display: block;
+}
+
+nav > ul > li > a {
+  color: #fafcfc;
+  text-decoration: none;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  display: inline-block;
+  text-decoration: none;
+  height: 28px;
+  height: 1.75rem;
+  font-size: 19px;
+  font-size: 1.1875rem;
+  font-weight: 600;
+}
+
+nav > ul > li > a:hover {
+  border-bottom: 4px solid;
+  border-bottom-color: #ea5b0c;
+}
+
+nav > ul > li > a:visited {
+  color: #fafcfc;
+}

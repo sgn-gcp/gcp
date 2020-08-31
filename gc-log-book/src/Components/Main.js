@@ -8,7 +8,7 @@ import PhoneBook from './PhoneBook'
 
 function Main() {
   return (
-    <main>
+    <main className="mainWrapper">
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />

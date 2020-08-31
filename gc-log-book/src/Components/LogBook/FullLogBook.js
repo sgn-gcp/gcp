@@ -14,7 +14,10 @@ const LogBookLink = ({ logBookId, title }) => (
 function FullLogBook() {
   return (
     <div>
-      <ul>{LogBookAPI.all().map((log) => LogBookLink(log))}</ul>
+      <h1>LogBook</h1>
+      <div>
+        <ul>{LogBookAPI.all().map((log) => LogBookLink(log))}</ul>
+      </div>
     </div>
   );
 }

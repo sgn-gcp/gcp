@@ -20,7 +20,9 @@ function LogEntry(logBookId) {
       <h1>
         #{logEntry.logBookId}: {logEntry.title}
       </h1>
-      <p>{logEntry.description}</p>
+      <div>
+        <p>{logEntry.description}</p>
+      </div>
     </div>
   );
 }
