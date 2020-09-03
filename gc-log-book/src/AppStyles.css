@@ -103,13 +103,9 @@ header {
   width: 100%;
   min-height: 70px;
   display: flex;
-  flex-direction: column;
-
-  justify-content: center; /* align items in Main Axis */
-  align-items: stretch; /* align items in Cross Axis */
-  align-content: stretch; /* Extra space in Cross Axis */
-  height: 100%;
+  flex-direction: row;
   text-transform: uppercase;
+  justify-content: center;
 }
 
 nav > ul {

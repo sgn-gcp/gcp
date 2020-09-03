@@ -1,16 +1,7 @@
 import React from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
-import {
-  Button,
-  Form,
-  Input,
-  Label,
-  Radio,
-  Select,
-  TextArea,
-} from 'semantic-ui-react';
+import { DefaultButton, TextField, Stack } from '@fluentui/react';
 import { Redirect } from 'react-router-dom';
 
 const PhoneEntryFromRouter = ({
@@ -41,12 +32,18 @@ class PhoneEntry extends React.Component {
       createdAt: '',
       updatedAt: '',
       phoneBookId: '',
-      redirectPage: false
+      redirectPage: false,
+      stackTokens: { childrenGap: 50 },
+      stackStyles: { width: 650 },
+      columnProps: {
+        tokens: { childrenGap: 15 },
+        styles: { root: { width: 300 } },
+      }
     };
   }
 
-  handleChange = (e, { name, value }) => {
-    this.setState({ [name]: value})
+  handleChange = (e, value) => {
+    this.setState({ [e.target.name]: value})
   }
 
   handleSumbit = () => {
@@ -73,7 +70,6 @@ class PhoneEntry extends React.Component {
         phoneBookId: response.data.createPhoneBookEntry.id,
         redirectPage: true
       })
-      // history.push(`/phonebook/${response.data.createPhoneBookEntry.id}`)
     })
     .catch((err) => {
       console.log("There was an error setting the data: " + err)
@@ -81,14 +77,7 @@ class PhoneEntry extends React.Component {
     })
   }
 
-  componentDidMount = () => {
-    // this.fetchData()
-  }
-
   render () {
-    // if (!this.state.item) {
-    //   return <div>Sorry, but that log was not found</div>;
-    // }
     if (this.state.redirectPage === true) {
       return <Redirect to={`/phonebook/${this.state.phoneBookId}`}/>
     }
@@ -97,80 +86,54 @@ class PhoneEntry extends React.Component {
       <div>
          <h1>
           PhoneBook &gt; {this.state.firstName || ''} {this.state.surname || ''}
-        </h1>
-        {/* <Fabric> */}
-        <Form onSubmit={this.handleSumbit}>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>First name</Label>
-              <Input placeholder='First name' value={this.state.firstName || ''} name='firstName' onChange={this.handleChange}/>
-            </Form.Field>
-            <Form.Field>
-              <Label>Notes</Label>
-              <TextArea placeholder='Notes' value={this.state.notes || ''} name='notes' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>Surname</Label>
-              <Input placeholder='Surname' value={this.state.surname || ''} name='surname' onChange={this.handleChange}/>
-            </Form.Field>
-            <Form.Field>
-              <Label>Description</Label>
-              <TextArea placeholder='Description' value={this.state.description || ''} name='description' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>Address</Label>
-              <Input placeholder='Address' value={this.state.address || ''} name='address' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>LDZ</Label>
-              <Input placeholder='LDZ' value={this.state.ldz || ''} name='ldz' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>Office Number</Label>
-              <Input placeholder='Office Number' value={this.state.officeNumber || ''} name='officeNumber' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>Mobile</Label>
-              <Input placeholder='Surname' value={this.state.mobile || ''} name='mobile' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>Pager</Label>
-              <Input placeholder='Pager' value={this.state.page || ''} name='page' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>Fax</Label>
-              <Input placeholder='Fax' value={this.state.fax || ''} name='fax' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>First Created</Label>
-              <Input placeholder='First Created' value={this.state.createdAt || ''} name='createdAt' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group widths='equal'>
-            <Form.Field>
-              <Label>Last Updated</Label>
-              <Input placeholder='Last Updated' value={this.state.updatedAt} name='updatedAt' onChange={this.handleChange}/>
-            </Form.Field>
-          </Form.Group>
-
-          <Form.Field control={Button}>SAVE</Form.Field>
-        </Form>
+        </h1>        
+        <Stack horizontal tokens={this.state.stackTokens} styles={this.state.stackStyles}>
+          <Stack {...this.state.columnProps}>
+            <TextField
+              label='First Name'
+              required
+              name='firstName'
+              value={this.state.firstName}
+              onChange={this.handleChange}
+            />
+            <TextField
+              label='Surname'
+              required
+              name='surname'
+              value={this.state.surname || ''}
+              onChange={this.handleChange}
+            />
+            <TextField label='Address' name='address' value={this.state.address || ''} onChange={this.handleChange} />
+            <TextField label='LDZ' name='ldz' value={this.state.ldz} onChange={this.handleChange} />
+            <TextField label='Office Number' name='officeNumber' value={this.state.officeNumber} onChange={this.handleChange} />
+            <TextField label='Mobile' name='mobile' value={this.state.mobile} onChange={this.handleChange} />
+            <TextField label='Pager' name='page' value={this.state.page} onChange={this.handleChange} />
+            <TextField label='Fax' name='fax' value={this.state.fax} onChange={this.handleChange} />
+          </Stack>
+          <Stack {...this.state.columnProps}>
+            <TextField label='Notes' name='notes' value={this.state.notes} onChange={this.handleChange} />
+            <TextField label='Description' name='description' value={this.state.description} onChange={this.handleChange} />
+            <TextField
+              label='First Created'
+              disabled
+              name='createdAt' 
+              value={this.state.createdAt}
+              onChange={this.handleChange}
+            />
+            <TextField
+              label='Last Updated'
+              disabled
+              name='updatedAt' 
+              value={this.state.updatedAt}
+              onChange={this.handleChange}
+            />
+            <DefaultButton
+              text='SAVE'
+              onClick={this.handleSumbit}
+              allowDisabledFocus
+            />
+          </Stack>
+        </Stack>
       </div>
     );
   }
