@@ -6,9 +6,9 @@ import { DefaultButton, TextField, Stack } from '@fluentui/react';
 
 const LogEntryFromRouter = ({
   match: {
-    params: { logEntryId },
+    params: { logBookId },
   },
-}) => {return (<LogEntry logEntryId={logEntryId}/>)}
+}) => {return (<LogEntry logBookId={logBookId}/>)}
 
 class LogEntry extends React.Component {
 
@@ -28,7 +28,7 @@ class LogEntry extends React.Component {
       areaAffectd: '',
       createdAt: '',
       updatedAt: '',
-      logEntryId: this.props.logEntryId || '',
+      logBookId: this.props.logBookId || '',
       stackTokens: { childrenGap: 50 },
       stackStyles: { width: 650 },
       columnProps: {
@@ -39,10 +39,10 @@ class LogEntry extends React.Component {
   }
   
   fetchData = async () => {
-    console.log("render: " + this.state.logEntryId)
+    console.log("render: " + this.state.logBookId)
     try {
       const response = await API.graphql(
-        graphqlOperation(queries.getLogBookEntry, { id: this.state.logEntryId })
+        graphqlOperation(queries.getLogBookEntry, { id: this.state.logBookId })
       );
       let item = response.data.getLogBookEntry
       this.setState({
@@ -72,7 +72,7 @@ class LogEntry extends React.Component {
     console.log("submit");
     const data = {
       input: {
-        id: this.state.logEntryId,
+        id: this.state.logBookId,
         title: this.state.title,
         raisedBy: this.state.raisedBy,
         notes: this.state.notes,
@@ -94,7 +94,7 @@ class LogEntry extends React.Component {
 
   componentDidMount = () => {
     this.fetchData()
-    console.log("render: " + this.state.logEntryId)
+    console.log("render: " + this.state.logBookId)
   }
 
   render () {
