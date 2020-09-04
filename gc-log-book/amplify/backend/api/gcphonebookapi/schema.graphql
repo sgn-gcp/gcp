@@ -12,3 +12,13 @@ type PhoneBookEntry @model {
   address: String
   description: String
 }
+
+type LogBookEntry @model {
+  id: ID!
+  title: String!
+  raisedBy: String
+  areaAffectd: String
+  severity: String
+  description: String
+  notes: String
+}

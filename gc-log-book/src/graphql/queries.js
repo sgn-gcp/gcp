@@ -48,3 +48,40 @@ export const listPhoneBookEntrys = /* GraphQL */ `
     }
   }
 `;
+export const getLogBookEntry = /* GraphQL */ `
+  query GetLogBookEntry($id: ID!) {
+    getLogBookEntry(id: $id) {
+      id
+      title
+      raisedBy
+      areaAffectd
+      severity
+      description
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listLogBookEntrys = /* GraphQL */ `
+  query ListLogBookEntrys(
+    $filter: ModelLogBookEntryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLogBookEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        raisedBy
+        areaAffectd
+        severity
+        description
+        notes
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

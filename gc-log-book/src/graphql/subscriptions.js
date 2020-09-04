@@ -61,3 +61,48 @@ export const onDeletePhoneBookEntry = /* GraphQL */ `
     }
   }
 `;
+export const onCreateLogBookEntry = /* GraphQL */ `
+  subscription OnCreateLogBookEntry {
+    onCreateLogBookEntry {
+      id
+      title
+      raisedBy
+      areaAffectd
+      severity
+      description
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateLogBookEntry = /* GraphQL */ `
+  subscription OnUpdateLogBookEntry {
+    onUpdateLogBookEntry {
+      id
+      title
+      raisedBy
+      areaAffectd
+      severity
+      description
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteLogBookEntry = /* GraphQL */ `
+  subscription OnDeleteLogBookEntry {
+    onDeleteLogBookEntry {
+      id
+      title
+      raisedBy
+      areaAffectd
+      severity
+      description
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;

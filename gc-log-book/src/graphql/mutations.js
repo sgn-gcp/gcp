@@ -70,3 +70,57 @@ export const deletePhoneBookEntry = /* GraphQL */ `
     }
   }
 `;
+export const createLogBookEntry = /* GraphQL */ `
+  mutation CreateLogBookEntry(
+    $input: CreateLogBookEntryInput!
+    $condition: ModelLogBookEntryConditionInput
+  ) {
+    createLogBookEntry(input: $input, condition: $condition) {
+      id
+      title
+      raisedBy
+      areaAffectd
+      severity
+      description
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateLogBookEntry = /* GraphQL */ `
+  mutation UpdateLogBookEntry(
+    $input: UpdateLogBookEntryInput!
+    $condition: ModelLogBookEntryConditionInput
+  ) {
+    updateLogBookEntry(input: $input, condition: $condition) {
+      id
+      title
+      raisedBy
+      areaAffectd
+      severity
+      description
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteLogBookEntry = /* GraphQL */ `
+  mutation DeleteLogBookEntry(
+    $input: DeleteLogBookEntryInput!
+    $condition: ModelLogBookEntryConditionInput
+  ) {
+    deleteLogBookEntry(input: $input, condition: $condition) {
+      id
+      title
+      raisedBy
+      areaAffectd
+      severity
+      description
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
